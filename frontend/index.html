@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Nova — memory demo</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Nova — memory on vs memory off</h1>
+    <div class="sub">Same LLM, same customer. Only the right panel remembers.</div>
+  </div>
+  <div class="header-right">
+    <span id="conn-status" class="conn-status checking">checking backend…</span>
+    <button class="reset" onclick="resetDemo()">Reset memory</button>
+  </div>
+</header>
+
+<div id="banner" class="banner hidden"></div>
+
+<div class="session-controls">
+  <span class="hint">API base:</span>
+  <input id="api-base" value="http://localhost:8000" onchange="onApiBaseChange()" />
+  <span class="hint">Simulate a new session (hard refresh both panels):</span>
+  <button onclick="location.reload()">↻ New session</button>
+</div>
+
+<div class="layout">
+  <div class="panel">
+    <div class="panel-header"><span class="dot bad"></span> No memory (vanilla LLM)</div>
+    <div class="messages" id="msgs-nomem"></div>
+    <div class="composer">
+      <input id="input-nomem" placeholder="Type as the customer…" onkeydown="if(event.key==='Enter') send('nomem')" />
+      <button onclick="send('nomem')">Send</button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-header"><span class="dot good"></span> Nova (Cognee memory)</div>
+    <div class="messages" id="msgs-mem"></div>
+    <div class="composer">
+      <input id="input-mem" placeholder="Type as the customer…" onkeydown="if(event.key==='Enter') send('mem')" />
+      <button onclick="send('mem')">Send</button>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-header">Live knowledge graph (Cognee) — refreshes after each Nova reply</div>
+    <iframe id="graph-frame" src="about:blank"></iframe>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
