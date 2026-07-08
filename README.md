@@ -1,6 +1,6 @@
 # Nova — a support agent that doesn't wake up on the roof
 
-Hackathon scaffold: a side-by-side demo of a stateless LLM agent vs. the
+A side-by-side demo of a stateless LLM agent vs. the
 same agent backed by [Cognee](https://github.com/topoteretes/cognee)'s
 hybrid graph+vector memory. Full pitch and scripted demo scenario in
 [`DEMO_SCRIPT.md`](./DEMO_SCRIPT.md) — read that first.
@@ -15,7 +15,7 @@ backend/
   .env.example
 frontend/
   index.html        Split-screen chat UI + live graph panel, no build step needed
-DEMO_SCRIPT.md       The pitch, the 4-session scenario, judge Q&A prep
+DEMO_SCRIPT.md       
 ```
 
 ## Quickstart (Ollama — free, local, default in this scaffold)
@@ -34,8 +34,7 @@ DEMO_SCRIPT.md       The pitch, the 4-session scenario, judge Q&A prep
    pip install -r requirements.txt
    cp .env.example .env
    ```
-4. **Edit `.env`** — `CHAT_PROVIDER=ollama` is already the default, so Nova's
-   chat replies need no API key and no cost at all.
+4. **Edit `.env`** — `CHAT_PROVIDER=ollama` is already the default
    You still need to set `LLM_API_KEY` to a real OpenAI key for **Cognee's own
    internal extraction step** (turning text into graph entities/relationships)
    — that part isn't swapped to Ollama by this scaffold. A free OpenAI trial
@@ -62,7 +61,7 @@ cognee.config.set_llm_config({
 ```
 
 Check [docs.cognee.ai](https://docs.cognee.ai) for the exact config keys for
-your installed Cognee version — this API surface moves around across
+ installed Cognee version — this API surface moves around across
 releases. Note that graph-extraction quality with a small local model is
 noticeably weaker than with GPT-4o-mini or similar, so test this ahead of
 judging, not during it.
@@ -100,7 +99,7 @@ hackathon demos die on stage.
   memory isolated while still persisting permanently into the graph in the
   background, which is why it survives a hard page refresh.
 - `POST /chat/no-memory` skips Cognee entirely and calls the LLM raw — this
-  is your control group.
+  is  control group.
 - `GET /graph` calls Cognee's `visualize_graph()` and streams the resulting
   HTML into an iframe, so the graph panel is always showing the live state
   of memory, not a mockup.
